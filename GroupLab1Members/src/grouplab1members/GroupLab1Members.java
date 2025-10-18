@@ -1,6 +1,7 @@
 package grouplab1members;
 
 import main.Member1;
+import main.Member3;
 
 /**
  *
@@ -13,7 +14,7 @@ public class GroupLab1Members {
      */
     public static void main(String[] args) {
         Member1.main(args);
-
+        Member3.main(args);
     }
 
 }
