@@ -5,6 +5,7 @@
  */
 package university.Person;
 
+import university.Person.Student.StudentProfile;
 import university.CourseSchedule.CourseLoad;
 import university.CourseSchedule.SeatAssignment;
 import java.util.ArrayList;

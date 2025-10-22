@@ -7,7 +7,7 @@ package university.Degree;
 
 import university.CourseCatalog.Course;
 import university.CourseSchedule.SeatAssignment;
-import university.Person.StudentProfile;
+import university.Person.Student.StudentProfile;
 import java.util.ArrayList;
 
 /**

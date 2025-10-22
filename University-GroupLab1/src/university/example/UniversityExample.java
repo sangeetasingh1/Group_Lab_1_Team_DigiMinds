@@ -13,8 +13,8 @@ import university.CourseSchedule.CourseSchedule;
 import university.Department.Department;
 import university.Person.Person;
 import university.Person.PersonDirectory;
-import university.Person.StudentDirectory;
-import university.Person.StudentProfile;
+import university.Person.Student.StudentDirectory;
+import university.Person.Student.StudentProfile;
 
 /**
  *

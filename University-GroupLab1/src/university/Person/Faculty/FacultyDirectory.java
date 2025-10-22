@@ -17,6 +17,10 @@ public class FacultyDirectory {
 
     Department department;
     ArrayList<FacultyProfile> teacherlist;
+    
+    public FacultyDirectory() {
+        teacherlist = new ArrayList();
+    }
 
     public FacultyDirectory(Department d) {
 

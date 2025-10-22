@@ -8,18 +8,19 @@ package university.Person.Faculty;
 import university.Person.Person;
 import university.CourseSchedule.CourseOffer;
 import java.util.ArrayList;
+import university.Person.Profiles.Profile;
 
 /**
  *
  * @author kal bugrara
  */
-public class FacultyProfile {
+public class FacultyProfile extends Profile{
 
     Person person;
     ArrayList <FacultyAssignment> facultyassignments; 
     
     public FacultyProfile(Person p) {
-
+        super(p);
         person = p;
         facultyassignments = new ArrayList();
     }
@@ -57,5 +58,11 @@ public class FacultyProfile {
         }
         return false;
     }
+    
+    @Override
+    public String getRole() {
+        return "Faculty";
+    }
+
 
 }
