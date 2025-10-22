@@ -12,10 +12,10 @@ import university.CourseSchedule.CourseOffer;
 import university.CourseSchedule.CourseSchedule;
 import university.Degree.Degree;
 import university.Employer.EmployerDirectory;
-import university.Persona.Faculty.FacultyDirectory;
-import university.Persona.PersonDirectory;
-import university.Persona.StudentDirectory;
-import university.Persona.StudentProfile;
+import university.Person.Faculty.FacultyDirectory;
+import university.Person.PersonDirectory;
+import university.Person.StudentDirectory;
+import university.Person.StudentProfile;
 import java.util.HashMap;
 
 /**
