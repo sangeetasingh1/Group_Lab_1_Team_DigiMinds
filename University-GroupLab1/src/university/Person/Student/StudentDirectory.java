@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package university.Persona;
+package university.Person.Student;
 
 import university.Department.Department;
 import java.util.ArrayList;
+import university.Person.Person;
 
 /**
  *
- * @author kal bugrara
+ * @author sange
  */
 public class StudentDirectory {
 
     Department department;
     ArrayList<StudentProfile> studentlist;
+    
+    public StudentDirectory() {
+        studentlist = new ArrayList();
+    }
 
     public StudentDirectory(Department d) {
 
