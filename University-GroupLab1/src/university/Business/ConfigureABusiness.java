@@ -16,9 +16,9 @@ import university.Business.UserAccounts.UserAccountDirectory;
  *
  * @author sange
  */
-class ConfigureABusiness {
+public class ConfigureABusiness {
 
-    static Business initialize() {
+    public static Business initialize() {
         Business business = new Business("Information Systems");
 
         // Create Persons
