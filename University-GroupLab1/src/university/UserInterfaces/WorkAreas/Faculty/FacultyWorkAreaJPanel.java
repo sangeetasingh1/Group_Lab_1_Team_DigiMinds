@@ -4,16 +4,32 @@
  */
 package university.UserInterfaces.WorkAreas.Faculty;
 
+import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
+
 /**
  *
  * @author jamie
  */
 public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
 
+    
+    javax.swing.JPanel CardSequencePanel;
+    Business business;
+    UserAccount userAccount;
     /**
      * Creates new form FacultyWorkAreaJPanel
      */
     public FacultyWorkAreaJPanel() {
+        initComponents();
+    }
+    
+    public FacultyWorkAreaJPanel(Business b, UserAccount userAccount, JPanel clp) {
+
+        this.business = b;
+        this.userAccount = userAccount;
+        this.CardSequencePanel = clp;
         initComponents();
     }
 
