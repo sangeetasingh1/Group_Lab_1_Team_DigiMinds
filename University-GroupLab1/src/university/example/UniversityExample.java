@@ -11,10 +11,10 @@ import university.CourseSchedule.CourseLoad;
 import university.CourseSchedule.CourseOffer;
 import university.CourseSchedule.CourseSchedule;
 import university.Department.Department;
-import university.Persona.Person;
-import university.Persona.PersonDirectory;
-import university.Persona.StudentDirectory;
-import university.Persona.StudentProfile;
+import university.Person.Person;
+import university.Person.PersonDirectory;
+import university.Person.Student.StudentDirectory;
+import university.Person.Student.StudentProfile;
 
 /**
  *

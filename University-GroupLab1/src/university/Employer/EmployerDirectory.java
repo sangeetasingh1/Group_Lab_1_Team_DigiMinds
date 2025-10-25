@@ -5,7 +5,6 @@
  */
 package university.Employer;
 
-import university.Persona.*;
 import university.Department.Department;
 import java.util.ArrayList;
 

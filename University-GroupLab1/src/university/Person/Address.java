@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package university.Persona;
+package university.Person;
 
 /**
  *
  * @author kal bugrara
  */
-public class StudentAccount {
+public class Address {
+    String line1;
+    String line2;
+    public Address(){
+        
+    }
     
 }

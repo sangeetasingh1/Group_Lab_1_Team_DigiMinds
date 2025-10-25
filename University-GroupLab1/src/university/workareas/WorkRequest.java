@@ -5,7 +5,7 @@
  */
 package university.workareas;
 
-import university.Persona.Person;
+import university.Person.Person;
 
 /**
  *

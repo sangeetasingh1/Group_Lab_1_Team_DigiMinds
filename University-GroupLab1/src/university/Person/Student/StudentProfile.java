@@ -3,28 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package university.Persona;
+package university.Person.Student;
 
 import university.CourseSchedule.CourseLoad;
 import university.CourseSchedule.SeatAssignment;
-import university.Persona.EmploymentHistory.EmploymentHistroy;
+import university.Person.EmploymentHistory.EmploymentHistroy;
 import java.util.ArrayList;
+import university.Person.Person;
+import university.Person.Transcript;
+import university.Person.Profiles.Profile;
 
 /**
  *
  * @author kal bugrara
  */
-public class StudentProfile {
+public class StudentProfile extends Profile{
 
     Person person;
     Transcript transcript;
     EmploymentHistroy employmenthistory;
+    
+    String nuId;
 
     public StudentProfile(Person p) {
-
+        super(p);
         person = p;
         transcript = new Transcript(this);
         employmenthistory = new EmploymentHistroy();
+    }
+    
+    public String getNuId() {
+        return nuId;
+    }
+
+    public void setNuId(String nuId) {
+        this.nuId = nuId;
+    }
+
+    @Override
+    public String getRole() {
+        return "Student";
     }
 
     public boolean isMatch(String id) {

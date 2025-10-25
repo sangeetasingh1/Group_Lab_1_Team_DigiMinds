@@ -6,8 +6,8 @@
 package university.CourseSchedule;
 
 import university.CourseCatalog.Course;
-import university.Persona.Faculty.FacultyAssignment;
-import university.Persona.Faculty.FacultyProfile;
+import university.Person.Faculty.FacultyAssignment;
+import university.Person.Faculty.FacultyProfile;
 import java.util.ArrayList;
 
 /**
