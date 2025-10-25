@@ -25,13 +25,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButton2" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="btnStudentGrades" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="btnManageCourses" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="btnManageProfile" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="btnStudentProfile" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -47,12 +47,12 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnManageCourses" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnManageProfile" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnStudentGrades" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnStudentProfile" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="188" max="32767" attributes="0"/>
           </Group>
@@ -76,23 +76,32 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageCoursesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnManageProfile">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Profile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageProfileActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnStudentGrades">
       <Properties>
         <Property name="text" type="java.lang.String" value="Student Grades"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 40]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStudentGradesActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnStudentProfile">
       <Properties>
         <Property name="text" type="java.lang.String" value="Student Profiles"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStudentProfileActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
