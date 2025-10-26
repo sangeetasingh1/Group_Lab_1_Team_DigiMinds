@@ -4,17 +4,30 @@
  */
 package university.UserInterfaces.WorkAreas.Student;
 
+import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
+
 /**
  *
  * @author Jafaeth Gomez
  */
 public class TranscriptPanel extends javax.swing.JPanel {
 
+    private final Business business;
+    private final UserAccount userAccount;
+    private final JPanel CardSequencePanel;
+
     /**
      * Creates new form TranscriptPanel
      */
-    public TranscriptPanel() {
+    public TranscriptPanel(Business business, UserAccount userAccount, javax.swing.JPanel cardPanel) {
         initComponents();
+        this.business = business;
+        this.userAccount = userAccount;
+        this.CardSequencePanel = cardPanel;
+
+        populateTranscriptTable();
     }
 
     /**
@@ -26,10 +39,73 @@ public class TranscriptPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setLayout(new java.awt.BorderLayout());
+        jLabel1 = new javax.swing.JLabel();
+        lblAcademicHistory = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTranscript = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Student Transcript");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 220, 40));
+
+        lblAcademicHistory.setText("Academic History");
+        add(lblAcademicHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
+
+        tblTranscript.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblTranscript);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 420, 130));
+
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+     if (CardSequencePanel != null) {
+        ((java.awt.CardLayout) CardSequencePanel.getLayout())
+            .first(CardSequencePanel);
+    }
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAcademicHistory;
+    private javax.swing.JTable tblTranscript;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTranscriptTable() {
+         javax.swing.table.DefaultTableModel dtm =
+        (javax.swing.table.DefaultTableModel) tblTranscript.getModel();
+
+        dtm.setRowCount(0);
+        dtm.setColumnIdentifiers(new Object[]{"Course ID", "Course Name", "Term", "Grade"});
+
+    // Example static academic history (just for display)
+    dtm.addRow(new Object[]{"INFO5100", "Application Engineering", "Fall 2024", "A"});
+    dtm.addRow(new Object[]{"INFO6150", "Web Design and UX", "Spring 2025", "A-"});
+    dtm.addRow(new Object[]{"INFO6200", "Data Science Methods", "Spring 2025", "B+"});
+    }
 }

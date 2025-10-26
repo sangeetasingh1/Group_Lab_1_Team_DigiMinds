@@ -21,8 +21,12 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
     private final Business business;
     private final UserAccount userAccount;
     private final JPanel cardContainer;
-    private javax.swing.JPanel CardSequencePanel;
+    private static final int COL_ID = 0;
+    private static final int COL_TITLE = 1;
+    private static final int COL_CREDITS = 2;
+    private static final int COL_STATUS = 3;
 
+ 
     public RegisterCoursesPanel() {
         this.business = null;
         this.userAccount = null;
@@ -37,35 +41,35 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         this.business = b;
         this.userAccount = ua;
         this.cardContainer = container;
+        
+       
         initComponents();
         configureTable();
-        loadCourses();    
+        loadCourses();
     }
 
     private void configureTable() {
         DefaultTableModel model = new DefaultTableModel(
-            new Object[][]{},
-            new String[] { "Course ID", "Title", "Credits" }
-        ) {
-            @Override public boolean isCellEditable(int row, int col) { return false; }
-        };
-        tblCourses.setModel(model);
-        tblCourses.setRowHeight(22);
-    }
+        new Object[][]{},
+        new String[] { "Course ID", "Title", "Credits", "Status" }
+    ) {
+        @Override public boolean isCellEditable(int row, int col) { return false; }
+    };
+    tblCourses.setModel(model);
+    tblCourses.setRowHeight(22);
+    tblCourses.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+}
     private void loadCourses() {
-        DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
-        model.setRowCount(0);
-        model.addRow(new Object[]{"INFO 5100", "App Engineering & Dev", 4});
-        model.addRow(new Object[]{"INFO 6150", "Web Design & UX", 4});
-        model.addRow(new Object[]{"CSYE 6200", "Object-Oriented Design", 4});
+       DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
+    model.setRowCount(0);
+    model.addRow(new Object[]{"INFO 5100", "App Engineering & Dev", 4, "Available"});
+    model.addRow(new Object[]{"INFO 6150", "Web Design & UX",      4, "Available"});
+    model.addRow(new Object[]{"CSYE 6200", "Object-Oriented Design",4, "Available"});
+
     }
     
-    private void goBack() {
-        if (cardContainer != null) {
-            cardContainer.remove(this);
-            ((CardLayout) cardContainer.getLayout()).previous(cardContainer);
-        }
-    }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,6 +86,7 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         btnEnroll = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        btnDrop = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
 
@@ -123,6 +128,13 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDrop.setText("Drop Selected");
+        btnDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDropActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,8 +144,10 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                .addGap(92, 92, 92)
-                .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEnroll, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(btnDrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,24 +161,28 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
                 .addGap(11, 11, 11)
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRefresh)
-                        .addGap(39, 39, 39))))
+                    .addComponent(btnBack)
+                    .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRefresh)
+                    .addComponent(btnDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-        layout.first(CardSequencePanel);
+      if (cardContainer != null && cardContainer.getLayout() instanceof CardLayout) {
+        ((CardLayout) cardContainer.getLayout()).first(cardContainer);  // go home
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(
+            this, "Navigation container not set.", "Navigation", javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+    }
                 
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -176,19 +194,54 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
 
     private void btnEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnrollActionPerformed
         // TODO add your handling code here:
-         int row = tblCourses.getSelectedRow();
-        if (row < 0) {
+           int row = tblCourses.getSelectedRow();
+    if (row < 0) {
         JOptionPane.showMessageDialog(this, "Please select a course to enroll.");
         return;
     }
-    String id = tblCourses.getValueAt(row, 0).toString();
-    JOptionPane.showMessageDialog(this, "Enrolled in " + id);
+
+    DefaultTableModel dtm = (DefaultTableModel) tblCourses.getModel();
+    String current = String.valueOf(dtm.getValueAt(row, COL_STATUS));
+
+    if ("Enrolled".equalsIgnoreCase(current)) {
+        JOptionPane.showMessageDialog(this, "You're already enrolled in this course.");
+        return;
+    }
+
+    dtm.setValueAt("Enrolled", row, COL_STATUS);
+    String id = String.valueOf(dtm.getValueAt(row, COL_ID));
+    JOptionPane.showMessageDialog(this, "Enrolled in " + id + ".");
+
 
     }//GEN-LAST:event_btnEnrollActionPerformed
+
+    private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
+        // TODO add your handling code here:
+         int row = tblCourses.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Select a course to drop.");
+        return;
+    }
+
+    DefaultTableModel dtm = (DefaultTableModel) tblCourses.getModel();
+    String status = String.valueOf(dtm.getValueAt(row, COL_STATUS));
+
+    if (!"Enrolled".equalsIgnoreCase(status)) {
+        JOptionPane.showMessageDialog(this, "You can only drop courses you are enrolled in.");
+        return;
+    }
+
+    dtm.setValueAt("Available", row, COL_STATUS);
+    String id = String.valueOf(dtm.getValueAt(row, COL_ID));
+    JOptionPane.showMessageDialog(this, "Dropped " + id + ".");
+
+      
+    }//GEN-LAST:event_btnDropActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnEnroll;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JScrollPane jScrollPane1;

@@ -18,18 +18,30 @@ public class CourseworkPanel extends javax.swing.JPanel {
     Business business;
     UserAccount userAccount;
     javax.swing.JPanel CardSequencePanel;
-    private UserAccount ua;
-    private Business b;
-    private JPanel clp;
-    private JPanel cardPanel;
+  
+
+  
     /**
      * Creates new form CourseworkPanel
      */
     public CourseworkPanel(Business business, UserAccount userAccount, javax.swing.JPanel cardPanel) {
-        initComponents();
-         this.business = business;
-        this.userAccount = userAccount;
-        this.CardSequencePanel = cardPanel;
+    initComponents();
+    this.business = business;
+    this.userAccount = userAccount;
+    this.CardSequencePanel = cardPanel;
+    seedAssignments(); // call this once at startup
+}
+
+private void seedAssignments() {
+    javax.swing.table.DefaultTableModel dtm =
+    (javax.swing.table.DefaultTableModel) jTable1.getModel();
+    dtm.setRowCount(0);
+    dtm.setColumnIdentifiers(new Object[]{"Course", "Assignment", "Status", "Submitted On"});
+
+    dtm.addRow(new Object[]{"BIO101", "Lab 1", "Not Submitted", "-"});
+    dtm.addRow(new Object[]{"CHEM210", "Project Proposal", "Not Submitted", "-"});
+    dtm.addRow(new Object[]{"MATH221", "HW 2", "Submitted", "2025-10-20"});
+
     }
 
     /**
@@ -44,31 +56,25 @@ public class CourseworkPanel extends javax.swing.JPanel {
         lblcoursework = new javax.swing.JLabel();
         lblCourseName = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
-        txtCourseName = new javax.swing.JTextField();
-        txtStatus = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblcoursework.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblcoursework.setText("Course Work");
-        add(lblcoursework, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 153, -1));
+        lblcoursework.setText("Manage Coursework");
+        add(lblcoursework, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 240, -1));
 
-        lblCourseName.setText("Course Name");
-        add(lblCourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 127, -1, -1));
+        lblCourseName.setText("My Coursework");
+        add(lblCourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         lblStatus.setText("Status:");
-        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 167, -1, -1));
-
-        txtCourseName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCourseNameActionPerformed(evt);
-            }
-        });
-        add(txtCourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 124, 107, -1));
-        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 164, 107, -1));
+        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         btnBack.setText("<<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -85,40 +91,97 @@ public class CourseworkPanel extends javax.swing.JPanel {
             }
         });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 236, 95, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCourseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCourseNameActionPerformed
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 100, -1));
+
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 90, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 460, 170));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-         CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-        layout.previous(CardSequencePanel);
+       if (CardSequencePanel != null) {
+        ((java.awt.CardLayout) CardSequencePanel.getLayout())
+            .first(CardSequencePanel);
+    }
     
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        String courseName = txtCourseName.getText();
-        String status = txtStatus.getText();
+        int row = jTable1.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Please select a coursework row to save.");
+        return;
+    }
 
-        if (courseName.isEmpty() || status.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill all fields.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Coursework saved:\nCourse: " + courseName + "\nStatus: " + status);
-        }
+    javax.swing.table.DefaultTableModel dtm =
+        (javax.swing.table.DefaultTableModel) jTable1.getModel();
+    String course = (String) dtm.getValueAt(row, 0);
+    String assignment = (String) dtm.getValueAt(row, 1);
+    JOptionPane.showMessageDialog(this, "Coursework saved:\nCourse: " + course + "\nAssignment: " + assignment);
+
         
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+         int r = jTable1.getSelectedRow();
+    if (r < 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Select an assignment to submit.");
+        return;
+    }
+    javax.swing.table.DefaultTableModel dtm =
+        (javax.swing.table.DefaultTableModel) jTable1.getModel();
+    dtm.setValueAt("Submitted", r, 2);
+    dtm.setValueAt(java.time.LocalDate.now().toString(), r, 3);
+    javax.swing.JOptionPane.showMessageDialog(this, "Assignment submitted.");
+
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        seedAssignments();
+
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCourseName;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblcoursework;
-    private javax.swing.JTextField txtCourseName;
-    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
+
 }
