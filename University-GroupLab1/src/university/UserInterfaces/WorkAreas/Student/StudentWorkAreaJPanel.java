@@ -118,11 +118,11 @@ import java.awt.Component;
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-    RegisterCoursesPanel rp = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
-    CardSequencePanel.add("RegisterPanel", rp);
-    ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "RegisterPanel");
-
-        
+    RegisterCoursesPanel reg = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("RegisterCoursesPanel", reg);
+    // was: ((CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    ((java.awt.CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "RegisterCoursesPanel");
+     
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditActionPerformed
@@ -134,6 +134,18 @@ import java.awt.Component;
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+         this.userAccount = null;
+
+    if (CardSequencePanel != null && CardSequencePanel.getLayout() instanceof java.awt.CardLayout) {
+        // Remove this screen so Back won’t land here after logout
+        CardSequencePanel.remove(this);
+
+        // Jump to the first card (your welcome/login screen)
+        java.awt.CardLayout cl = (java.awt.CardLayout) CardSequencePanel.getLayout();
+        cl.first(CardSequencePanel);
+    }
+
+    javax.swing.JOptionPane.showMessageDialog(this, "You have been logged out.");
     }//GEN-LAST:event_btnLogoutActionPerformed
 
 
