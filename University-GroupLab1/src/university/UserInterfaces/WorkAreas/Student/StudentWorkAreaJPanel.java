@@ -49,12 +49,16 @@ import java.awt.CardLayout;
         lblstudentdashboard = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         btnRegister.setText("Register for Courses");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
+        add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 190, -1, -1));
 
         btnTranscript.setText("View Transcript");
         btnTranscript.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +66,7 @@ import java.awt.CardLayout;
                 btnTranscriptActionPerformed(evt);
             }
         });
+        add(btnTranscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 190, -1, -1));
 
         btnCoursework.setText("Manage Coursework");
         btnCoursework.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +74,7 @@ import java.awt.CardLayout;
                 btnCourseworkActionPerformed(evt);
             }
         });
+        add(btnCoursework, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 190, -1, -1));
 
         btnAudit.setText("Graduation Audit");
         btnAudit.addActionListener(new java.awt.event.ActionListener() {
@@ -76,9 +82,11 @@ import java.awt.CardLayout;
                 btnAuditActionPerformed(evt);
             }
         });
+        add(btnAudit, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 190, -1, -1));
 
         lblstudentdashboard.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblstudentdashboard.setText("Student Dashboard ");
+        add(lblstudentdashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 46, 257, 40));
 
         btnLogout.setText("Log out");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -86,43 +94,7 @@ import java.awt.CardLayout;
                 btnLogoutActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(btnTranscript)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCoursework)
-                .addGap(34, 34, 34)
-                .addComponent(btnAudit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblstudentdashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(lblstudentdashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister)
-                    .addComponent(btnTranscript)
-                    .addComponent(btnCoursework)
-                    .addComponent(btnAudit))
-                .addGap(18, 18, 18)
-                .addComponent(btnLogout)
-                .addGap(56, 56, 56))
-        );
+        add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 231, 137, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCourseworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseworkActionPerformed
