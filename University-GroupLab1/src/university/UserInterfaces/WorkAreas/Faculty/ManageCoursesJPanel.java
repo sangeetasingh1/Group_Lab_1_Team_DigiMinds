@@ -24,6 +24,7 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
      * Creates new form ManageCoursesJPanel
      */
     public ManageCoursesJPanel(javax.swing.JPanel csp) {
+        JPanel CardSequencePanel;
         this.CardSequencePanel = csp;
         
         initComponents();
