@@ -23,7 +23,7 @@ public class ManageProfileJPanel extends javax.swing.JPanel {
      * Creates new form ManageProfilesJPanel
      */
     public ManageProfileJPanel(JPanel csp) {
-        JPanel CardSequencePanel;
+        this.CardSequencePanel = csp;
         
         initComponents();
 

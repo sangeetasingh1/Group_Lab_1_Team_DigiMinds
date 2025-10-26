@@ -6,6 +6,7 @@ package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import university.Business.Business;
 import university.Business.UserAccounts.UserAccount;
 
@@ -24,11 +25,28 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
      * Creates new form ManageCoursesJPanel
      */
     public ManageCoursesJPanel(javax.swing.JPanel csp) {
-        JPanel CardSequencePanel;
         this.CardSequencePanel = csp;
         
         initComponents();
+        configureTable();
+        manageCourses();
         
+    }
+    
+    private void configureTable() {
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[][]{},
+            new String[] { "Course ID", "Title", "Credits" }
+        );
+        tblManageCourses.setModel(model);
+        tblManageCourses.setRowHeight(22);
+    }
+    private void manageCourses() {
+        DefaultTableModel model = (DefaultTableModel) tblManageCourses.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{"INFO 5100", "App Engineering & Dev", 4});
+        model.addRow(new Object[]{"INFO 6150", "Web Design & UX", 4});
+        model.addRow(new Object[]{"CSYE 6200", "Object-Oriented Design", 4});
     }
 
     /**
@@ -65,7 +83,7 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Course Name", "Course Number", "Credits"
+                "Course ID", "Title", "Credits"
             }
         ));
         jScrollPane1.setViewportView(tblManageCourses);

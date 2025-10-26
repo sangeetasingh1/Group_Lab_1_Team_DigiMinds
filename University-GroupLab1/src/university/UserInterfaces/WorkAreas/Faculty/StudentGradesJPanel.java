@@ -6,6 +6,7 @@ package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import university.Business.Business;
 import university.Business.UserAccounts.UserAccount;
 
@@ -23,9 +24,26 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
      * Creates new form StudentGradesJPanel
      */
     public StudentGradesJPanel(javax.swing.JPanel csp) {
-        JPanel CardSequencePanel;
-        initComponents();
         this.CardSequencePanel = csp;
+
+        initComponents();
+        studentGrades();
+        loadGrades();
+    }
+    
+    private void studentGrades() {
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[][]{},
+            new String[] { "Name", "Course", "Grade" }
+        ) {
+            @Override public boolean isCellEditable(int row, int col) { return false; }
+        };
+        tblStudentGrades.setModel(model);
+        tblStudentGrades.setRowHeight(22);
+    }
+    private void loadGrades() {
+        DefaultTableModel model = (DefaultTableModel) tblStudentGrades.getModel();
+        model.setRowCount(0);
     }
 
     /**
@@ -40,7 +58,7 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblStudentGrades = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 255, 204));
 
@@ -54,7 +72,7 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudentGrades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -65,7 +83,7 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
                 "Name", "Course", "Grade"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblStudentGrades);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,6 +125,6 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblStudentGrades;
     // End of variables declaration//GEN-END:variables
 }
