@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import university.Person.Faculty.FacultyProfile;
 import university.UserInterfaces.WorkAreas.Faculty.FacultyWorkAreaJPanel;
 import university.Person.Student.StudentProfile;
+import university.UserInterfaces.WorkAreas.Student.StudentSignUpJPanel;
 import university.UserInterfaces.WorkAreas.Student.StudentWorkAreaJPanel;
 /**
  *
@@ -240,7 +241,10 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordTextFieldActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-
+        StudentSignUpJPanel signUpPanel = new StudentSignUpJPanel(business, CardSequencePanel);
+        CardSequencePanel.removeAll();
+        CardSequencePanel.add("student", signUpPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void UserNameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserNameTextFieldFocusGained
