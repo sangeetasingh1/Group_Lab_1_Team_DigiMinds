@@ -4,17 +4,31 @@
  */
 package university.UserInterfaces.WorkAreas.Student;
 
+import java.awt.CardLayout;
+import java.awt.Container;
+import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
+
 /**
  *
  * @author Jafaeth Gomez
  */
 public class AuditPanel extends javax.swing.JPanel {
+    private Business business;
+    private UserAccount userAccount;
+    private javax.swing.JPanel CardSequencePanel;
+
 
     /**
      * Creates new form AuditPanel
      */
-    public AuditPanel() {
+    public AuditPanel(Business b, UserAccount ua, javax.swing.JPanel clp) {
         initComponents();
+        this.business = b;
+        this.userAccount = ua;
+        this.CardSequencePanel = clp;
+    
     }
 
     /**
@@ -26,19 +40,94 @@ public class AuditPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblNuid = new javax.swing.JLabel();
+        lblCompltedcredits = new javax.swing.JLabel();
+        lblRequired = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Graduation Audit ");
+
+        lblName.setText("Name");
+
+        lblNuid.setText("NUID:");
+
+        lblCompltedcredits.setText("Completed Credits: 0");
+
+        lblRequired.setText("Required Credits: 32");
+
+        lblStatus.setText("Status: In Progress");
+
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblStatus)
+                                    .addComponent(lblRequired)
+                                    .addComponent(lblCompltedcredits)
+                                    .addComponent(lblNuid)
+                                    .addComponent(lblName)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(btnBack)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNuid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCompltedcredits)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRequired)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblStatus)
+                .addGap(37, 37, 37)
+                .addComponent(btnBack)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+         if (CardSequencePanel == null) return;           // safety
+
+    CardLayout cl = (CardLayout) CardSequencePanel.getLayout();
+    CardSequencePanel.remove(this);                  // remove this AuditPanel
+    cl.previous(CardSequencePanel); 
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblCompltedcredits;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblNuid;
+    private javax.swing.JLabel lblRequired;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

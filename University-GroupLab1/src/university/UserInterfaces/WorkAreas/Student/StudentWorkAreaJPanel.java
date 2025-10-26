@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package university.UserInterfaces.WorkAreas.Student;
+import university.UserInterfaces.WorkAreas.Student.AuditPanel;
 import javax.swing.*;
 import university.Business.Business;
 import university.Business.UserAccounts.UserAccount;
 import java.awt.CardLayout;
+
 /**
  *
  * @author Jafaeth Gomez
@@ -116,6 +118,10 @@ import java.awt.CardLayout;
 
     private void btnAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditActionPerformed
         // TODO add your handling code here:
+       AuditPanel auditPanel = new AuditPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("auditPanel", auditPanel);
+    ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+
     }//GEN-LAST:event_btnAuditActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
