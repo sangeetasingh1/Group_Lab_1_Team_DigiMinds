@@ -21,8 +21,12 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
     private final Business business;
     private final UserAccount userAccount;
     private final JPanel cardContainer;
-    private javax.swing.JPanel CardSequencePanel;
+    private static final int COL_ID = 0;
+    private static final int COL_TITLE = 1;
+    private static final int COL_CREDITS = 2;
+    private static final int COL_STATUS = 3;
 
+ 
     public RegisterCoursesPanel() {
         this.business = null;
         this.userAccount = null;
@@ -37,35 +41,35 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         this.business = b;
         this.userAccount = ua;
         this.cardContainer = container;
+        
+       
         initComponents();
         configureTable();
-        loadCourses();    
+        loadCourses();
     }
 
     private void configureTable() {
         DefaultTableModel model = new DefaultTableModel(
-            new Object[][]{},
-            new String[] { "Course ID", "Title", "Credits" }
-        ) {
-            @Override public boolean isCellEditable(int row, int col) { return false; }
-        };
-        tblCourses.setModel(model);
-        tblCourses.setRowHeight(22);
-    }
+        new Object[][]{},
+        new String[] { "Course ID", "Title", "Credits", "Status" }
+    ) {
+        @Override public boolean isCellEditable(int row, int col) { return false; }
+    };
+    tblCourses.setModel(model);
+    tblCourses.setRowHeight(22);
+    tblCourses.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+}
     private void loadCourses() {
-        DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
-        model.setRowCount(0);
-        model.addRow(new Object[]{"INFO 5100", "App Engineering & Dev", 4});
-        model.addRow(new Object[]{"INFO 6150", "Web Design & UX", 4});
-        model.addRow(new Object[]{"CSYE 6200", "Object-Oriented Design", 4});
+       DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
+    model.setRowCount(0);
+    model.addRow(new Object[]{"INFO 5100", "App Engineering & Dev", 4, "Available"});
+    model.addRow(new Object[]{"INFO 6150", "Web Design & UX",      4, "Available"});
+    model.addRow(new Object[]{"CSYE 6200", "Object-Oriented Design",4, "Available"});
+
     }
     
-    private void goBack() {
-        if (cardContainer != null) {
-            cardContainer.remove(this);
-            ((CardLayout) cardContainer.getLayout()).previous(cardContainer);
-        }
-    }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,8 +176,13 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-        layout.first(CardSequencePanel);
+      if (cardContainer != null && cardContainer.getLayout() instanceof CardLayout) {
+        ((CardLayout) cardContainer.getLayout()).first(cardContainer);  // go home
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(
+            this, "Navigation container not set.", "Navigation", javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+    }
                 
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -185,34 +194,48 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
 
     private void btnEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnrollActionPerformed
         // TODO add your handling code here:
-         int row = tblCourses.getSelectedRow();
-        if (row < 0) {
+           int row = tblCourses.getSelectedRow();
+    if (row < 0) {
         JOptionPane.showMessageDialog(this, "Please select a course to enroll.");
         return;
     }
-    String id = tblCourses.getValueAt(row, 0).toString();
-    JOptionPane.showMessageDialog(this, "Enrolled in " + id);
+
+    DefaultTableModel dtm = (DefaultTableModel) tblCourses.getModel();
+    String current = String.valueOf(dtm.getValueAt(row, COL_STATUS));
+
+    if ("Enrolled".equalsIgnoreCase(current)) {
+        JOptionPane.showMessageDialog(this, "You're already enrolled in this course.");
+        return;
+    }
+
+    dtm.setValueAt("Enrolled", row, COL_STATUS);
+    String id = String.valueOf(dtm.getValueAt(row, COL_ID));
+    JOptionPane.showMessageDialog(this, "Enrolled in " + id + ".");
+
 
     }//GEN-LAST:event_btnEnrollActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tblCourses.getSelectedRow();
-    if (selectedRow < 0) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Select a course to drop.");
+         int row = tblCourses.getSelectedRow();
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Select a course to drop.");
         return;
     }
 
-    javax.swing.table.DefaultTableModel dtm =
-        (javax.swing.table.DefaultTableModel) tblCourses.getModel();
-    String status = String.valueOf(dtm.getValueAt(selectedRow, 2));
+    DefaultTableModel dtm = (DefaultTableModel) tblCourses.getModel();
+    String status = String.valueOf(dtm.getValueAt(row, COL_STATUS));
 
     if (!"Enrolled".equalsIgnoreCase(status)) {
-        javax.swing.JOptionPane.showMessageDialog(this, "You can only drop enrolled courses.");
-    } else {
-        dtm.setValueAt("Available", selectedRow, 2);
-        javax.swing.JOptionPane.showMessageDialog(this, "Course dropped successfully.");
+        JOptionPane.showMessageDialog(this, "You can only drop courses you are enrolled in.");
+        return;
     }
+
+    dtm.setValueAt("Available", row, COL_STATUS);
+    String id = String.valueOf(dtm.getValueAt(row, COL_ID));
+    JOptionPane.showMessageDialog(this, "Dropped " + id + ".");
+
+      
     }//GEN-LAST:event_btnDropActionPerformed
 
 

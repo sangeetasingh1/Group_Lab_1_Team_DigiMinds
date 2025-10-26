@@ -126,8 +126,10 @@ private void seedAssignments() {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-         CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-        layout.previous(CardSequencePanel);
+       if (CardSequencePanel != null) {
+        ((java.awt.CardLayout) CardSequencePanel.getLayout())
+            .first(CardSequencePanel);
+    }
     
     }//GEN-LAST:event_btnBackActionPerformed
 

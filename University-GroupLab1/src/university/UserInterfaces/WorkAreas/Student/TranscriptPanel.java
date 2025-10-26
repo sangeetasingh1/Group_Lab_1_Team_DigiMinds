@@ -81,8 +81,10 @@ public class TranscriptPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        java.awt.CardLayout cl = (java.awt.CardLayout) CardSequencePanel.getLayout();
-        cl.previous(CardSequencePanel);
+     if (CardSequencePanel != null) {
+        ((java.awt.CardLayout) CardSequencePanel.getLayout())
+            .first(CardSequencePanel);
+    }
     }//GEN-LAST:event_btnBackActionPerformed
 
 

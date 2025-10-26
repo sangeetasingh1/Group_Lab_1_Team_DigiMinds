@@ -118,12 +118,11 @@ import java.awt.Component;
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-    RegisterCoursesPanel regPanel = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
-    CardSequencePanel.add("RegisterPanel", regPanel);
-     java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
-    layout.next(CardSequencePanel);
-
-        
+    RegisterCoursesPanel reg = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("RegisterCoursesPanel", reg);
+    // was: ((CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    ((java.awt.CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "RegisterCoursesPanel");
+     
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditActionPerformed
