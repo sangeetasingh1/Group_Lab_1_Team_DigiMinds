@@ -6,6 +6,8 @@ package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
 
 
 /**
@@ -13,7 +15,9 @@ import javax.swing.JPanel;
  * @author jamie
  */
 public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
-    private javax.swing.JPanel CardSequencePanel;
+    private JPanel CardSequencePanel;
+    private Business business;
+    private UserAccount userAccount;
 
     ManageCoursesJPanel manageCoursesJPanel = new ManageCoursesJPanel(CardSequencePanel);
     ManageProfileJPanel manageProfileJPanel = new ManageProfileJPanel(CardSequencePanel);
@@ -21,7 +25,7 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
     StudentProfilesJPanel studentProfilesJPanel = new StudentProfilesJPanel(CardSequencePanel);
 
     
-   JPanel CardSequencePanel;
+    
     /**
      * Creates new form FacultyWorkAreaJPanel
      */
@@ -31,7 +35,8 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
     
     public FacultyWorkAreaJPanel(Business b, UserAccount userAccount, JPanel clp) {
 
-   
+        this.business = b;
+        this.userAccount = userAccount;
         this.CardSequencePanel = clp;
         initComponents();
     }
@@ -51,11 +56,8 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
         btnStudentGrades = new javax.swing.JButton();
         btnStudentProfile = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
-        setForeground(new java.awt.Color(255, 255, 255));
-
         lblFacultyMember.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        lblFacultyMember.setText("Faculty Member Dashboard");
+        lblFacultyMember.setText("Faculty Member");
 
         btnManageCourses.setText("Manage Courses");
         btnManageCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -93,31 +95,33 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
+                        .addGap(249, 249, 249)
                         .addComponent(lblFacultyMember))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
+                        .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnStudentGrades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManageCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(123, 123, 123)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnManageCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(190, Short.MAX_VALUE))
+                            .addComponent(btnStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(14, 14, 14)
                 .addComponent(lblFacultyMember)
-                .addGap(48, 48, 48)
-                .addComponent(btnManageCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btnStudentGrades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(btnStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnManageCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStudentGrades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
