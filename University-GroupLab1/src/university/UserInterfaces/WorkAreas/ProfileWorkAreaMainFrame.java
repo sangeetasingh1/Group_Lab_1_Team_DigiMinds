@@ -11,6 +11,8 @@ import university.UserInterfaces.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import university.Person.Faculty.FacultyProfile;
+import university.UserInterfaces.WorkAreas.Faculty.FacultyWorkAreaJPanel;
 
 /**
  *
@@ -165,6 +167,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         }
         
         AdminRoleWorkAreaJPanel adminworkarea;
+        FacultyWorkAreaJPanel facultyworkarea;
         String role = useraccount.getRole();
         Profile profile = useraccount.getAssociatedPersonProfile();
 
@@ -175,6 +178,17 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             adminworkarea = new AdminRoleWorkAreaJPanel(business, useraccount, CardSequencePanel);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("Admin", adminworkarea);
+            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+
+        }
+        
+        if (profile instanceof FacultyProfile || role.equalsIgnoreCase("Faculty")) {
+
+            useraccount.setLastActivity("Account Accessed");
+            useraccount.setLastUpdated(LocalDateTime.now());//Whenever acount login is performed the last Accessed time is updated here
+            facultyworkarea = new FacultyWorkAreaJPanel(business, useraccount, CardSequencePanel);
+            CardSequencePanel.removeAll();
+            CardSequencePanel.add("faculty", facultyworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
