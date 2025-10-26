@@ -119,7 +119,31 @@ Student → Manage coursework (submit assignments, track progress), Register for
 **Role-based Navigation**
     Developed dynamic routing based on the Profile role and instance of the class
 
+### Future Enhancements
+    Enhancement for further integration with the database could be implemented to maintain all the created data
 
+### Contribution Breakdown
+**Admin Use Case**
+    🪜 Administer user accounts (create, modify, and delete accounts) - Supporting login/Logout, Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Register persons (students, faculty, academic staff) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Manage student records (update, delete, or view student data) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Manage faculty records (update, delete, or view faculty data) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Manage own profile
+    **Developed by: [Sangeeta Singh] | [002082071]**
+
+**Faculty Use Case**
+    🪜 Manage courses (view, update course details) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Manage faculty member profile - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Generate performance reports (student grades in the class) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Manage student profiles (view hobbies, interests, academic progress) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    **Developed by: [Jamie Gist] | [003182426]**
+
+**Student Use Case**
+    🪜 Manage coursework (submit assignments, track progress) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Register for classes (enroll, drop courses) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Perform graduation audit (track credits and graduation requirements) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    🪜 Review transcript (view academic history) - Model Creation,  UI Changes, Integration, Unit and Integration Testing
+    **Developed by: [Jafaeth Gomez] | [003189253]**
 
 
 
