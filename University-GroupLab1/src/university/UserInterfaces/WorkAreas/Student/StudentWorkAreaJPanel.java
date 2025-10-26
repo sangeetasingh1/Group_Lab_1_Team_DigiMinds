@@ -32,6 +32,15 @@ import java.awt.Component;
         this.userAccount = ua;
         this.CardSequencePanel = clp;
         initComponents();
+    if (CardSequencePanel != null && CardSequencePanel.getLayout() instanceof java.awt.CardLayout) {
+        boolean alreadyAdded = false;
+        for (java.awt.Component c : CardSequencePanel.getComponents()) {
+            if (c == this) { alreadyAdded = true; break; }
+        }
+        if (!alreadyAdded) {
+            CardSequencePanel.add("StudentWorkArea", this);
+        }
+    }
     }
 
     /**
@@ -50,7 +59,6 @@ import java.awt.Component;
         btnCoursework = new javax.swing.JButton();
         btnAudit = new javax.swing.JButton();
         lblstudentdashboard = new javax.swing.JLabel();
-        btnLogout = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,14 +98,6 @@ import java.awt.Component;
         lblstudentdashboard.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblstudentdashboard.setText("Student Dashboard ");
         add(lblstudentdashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 46, 257, 40));
-
-        btnLogout.setText("Log out");
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 231, 137, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCourseworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseworkActionPerformed
@@ -111,9 +111,13 @@ import java.awt.Component;
 
     private void btnTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranscriptActionPerformed
         // TODO add your handling code here:
-        TranscriptPanel tp = new TranscriptPanel(business, userAccount, CardSequencePanel);
-         CardSequencePanel.add("TranscriptPanel", tp);
-        ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "TranscriptPanel");
+       if (CardSequencePanel == null || business == null || userAccount == null) {
+        JOptionPane.showMessageDialog(this, "Cannot open Transcript (container or data missing).");
+        return;
+    }
+    TranscriptPanel tp = new TranscriptPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("TranscriptPanel", tp);
+    ((java.awt.CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "TranscriptPanel");
     }//GEN-LAST:event_btnTranscriptActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -132,27 +136,10 @@ import java.awt.Component;
     ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "AuditPanel");
     }//GEN-LAST:event_btnAuditActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
-         this.userAccount = null;
-
-    if (CardSequencePanel != null && CardSequencePanel.getLayout() instanceof java.awt.CardLayout) {
-        // Remove this screen so Back won’t land here after logout
-        CardSequencePanel.remove(this);
-
-        // Jump to the first card (your welcome/login screen)
-        java.awt.CardLayout cl = (java.awt.CardLayout) CardSequencePanel.getLayout();
-        cl.first(CardSequencePanel);
-    }
-
-    javax.swing.JOptionPane.showMessageDialog(this, "You have been logged out.");
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAudit;
     private javax.swing.JButton btnCoursework;
-    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnTranscript;
     private javax.swing.JLabel lblstudentdashboard;
