@@ -1,10 +1,10 @@
 package university.UserInterfaces.WorkAreas.AdminRole.AdminiterUserAccountWork;
 
 import university.Business.Business;
-import  university.Person.Faculty.FacultyProfile;
+import university.Person.Faculty.FacultyProfile;
 import university.Person.Student.StudentProfile;
-import  university.Business.UserAccounts.UserAccount;
-import  university.Business.UserAccounts.UserAccountDirectory;
+import university.Business.UserAccounts.UserAccount;
+import university.Business.UserAccounts.UserAccountDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
@@ -47,7 +47,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         }
 
         UserAccountDirectory uad = business.getUserAccountDirectory();
-        
+
         if (manageActivityType.equalsIgnoreCase(MANAGE_ALL_ACCOUNTS)) {
             for (UserAccount ua : uad.getUserAccountList()) {
 
@@ -56,16 +56,16 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
                 row[1] = ua.getAccountStatus();
                 row[2] = ua.getLastActivity();
                 row[3] = ua.getLastUpdated();
-                if(ua.getProfile() instanceof StudentProfile){
-                    row[4] = ((StudentProfile)ua.getProfile()).getNuId();
-                }else{
+                if (ua.getProfile() instanceof StudentProfile) {
+                    row[4] = ((StudentProfile) ua.getProfile()).getNuId();
+                } else {
                     row[4] = "--";
                 }
-                
+
                 ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
             }
         }
-        
+
         if (manageActivityType.equalsIgnoreCase(MANAGE_FACULTY)) {
             for (UserAccount ua : uad.getUserAccountList()) {
                 if (ua.getAssociatedPersonProfile() instanceof FacultyProfile) {
@@ -79,7 +79,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        
+
         if (manageActivityType.equalsIgnoreCase(MANAGE_STUDENT)) {
             for (UserAccount ua : uad.getUserAccountList()) {
                 if (ua.getAssociatedPersonProfile() instanceof StudentProfile) {
@@ -113,6 +113,8 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         UserAccountTable = new javax.swing.JTable();
         btnAddAccount = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(176, 224, 230));
         setLayout(null);
@@ -124,7 +126,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(540, 50, 74, 23);
+        Back.setBounds(40, 300, 110, 30);
 
         Next.setText("Next >>");
         Next.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +135,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             }
         });
         add(Next);
-        Next.setBounds(530, 300, 80, 23);
+        Next.setBounds(600, 300, 100, 30);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("User Accounts");
@@ -183,7 +185,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAddAccount);
-        btnAddAccount.setBounds(320, 300, 100, 23);
+        btnAddAccount.setBounds(370, 300, 110, 30);
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +194,18 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDelete);
-        btnDelete.setBounds(440, 300, 72, 23);
+        btnDelete.setBounds(492, 300, 90, 30);
+        add(txtSearch);
+        txtSearch.setBounds(370, 50, 200, 30);
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch);
+        btnSearch.setBounds(590, 50, 100, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -204,7 +217,7 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_BackActionPerformed
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-      
+
         int row = UserAccountTable.getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -254,6 +267,38 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         refreshTable(manageActivityType);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+        if (!txtSearch.getText().isBlank()) {
+
+            String studentNUID = txtSearch.getText();
+            StudentProfile foundStudent = business.getStudentDirectory().findStudentUsingNuid(studentNUID);
+            if (foundStudent != null) {
+                UserAccountDirectory uadirectory = business.getUserAccountDirectory();
+                selecteduseraccount = uadirectory.findUserAccount(foundStudent.getPerson().getId());
+                if (selecteduseraccount != null) {
+                    AdminUserAccount userAccount = new AdminUserAccount(business, selecteduseraccount, CardSequencePanel);
+                    CardSequencePanel.add("AdminUserAccount", userAccount);
+                    CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+                    layout.next(CardSequencePanel);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "1Student Account is not found please check the NUID or Create an Account",
+                            "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "2Student Account is not found please check the NUID or Create an Account",
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please type the NUID Id to search the Student Account",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
@@ -261,9 +306,11 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
     private javax.swing.JTable UserAccountTable;
     private javax.swing.JButton btnAddAccount;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
 }
