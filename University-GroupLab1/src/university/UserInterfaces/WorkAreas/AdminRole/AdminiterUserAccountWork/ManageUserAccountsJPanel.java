@@ -51,12 +51,17 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         if (manageActivityType.equalsIgnoreCase(MANAGE_ALL_ACCOUNTS)) {
             for (UserAccount ua : uad.getUserAccountList()) {
 
-                Object[] row = new Object[4];
+                Object[] row = new Object[5];
                 row[0] = ua;
                 row[1] = ua.getAccountStatus();
                 row[2] = ua.getLastActivity();
                 row[3] = ua.getLastUpdated();
-
+                if(ua.getProfile() instanceof StudentProfile){
+                    row[4] = ((StudentProfile)ua.getProfile()).getNuId();
+                }else{
+                    row[4] = "--";
+                }
+                
                 ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
             }
         }
@@ -142,13 +147,13 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
         UserAccountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "User Name", "Status", "Last Activity", "Last Updated"
+                "User Name", "Status", "Last Activity", "Last Updated", "NUID"
             }
         ));
         UserAccountTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,14 +163,18 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(UserAccountTable);
         if (UserAccountTable.getColumnModel().getColumnCount() > 0) {
-            UserAccountTable.getColumnModel().getColumn(0).setHeaderValue("User Name");
-            UserAccountTable.getColumnModel().getColumn(1).setHeaderValue("Status");
-            UserAccountTable.getColumnModel().getColumn(2).setHeaderValue("Last Activity");
-            UserAccountTable.getColumnModel().getColumn(3).setHeaderValue("Last Updated");
+            UserAccountTable.getColumnModel().getColumn(0).setMinWidth(70);
+            UserAccountTable.getColumnModel().getColumn(0).setMaxWidth(100);
+            UserAccountTable.getColumnModel().getColumn(1).setMinWidth(50);
+            UserAccountTable.getColumnModel().getColumn(1).setMaxWidth(80);
+            UserAccountTable.getColumnModel().getColumn(2).setMinWidth(130);
+            UserAccountTable.getColumnModel().getColumn(2).setMaxWidth(150);
+            UserAccountTable.getColumnModel().getColumn(3).setMinWidth(250);
+            UserAccountTable.getColumnModel().getColumn(3).setMaxWidth(260);
         }
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(30, 110, 590, 130);
+        jScrollPane1.setBounds(30, 110, 670, 150);
 
         btnAddAccount.setText("Add Account");
         btnAddAccount.addActionListener(new java.awt.event.ActionListener() {
