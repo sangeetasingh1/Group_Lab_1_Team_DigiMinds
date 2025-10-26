@@ -49,13 +49,13 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "NUID", "Hobbies/Interests", "Degree", "Grade"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -90,11 +90,8 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        if (CardSequencePanel == null) return; // error handling if there's nothing before
-        
-        CardLayout cl = (CardLayout) CardSequencePanel.getLayout();
-        CardSequencePanel.remove(this);  // removes current panel then back to previous panel
-        cl.previous(CardSequencePanel);
+        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.first(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

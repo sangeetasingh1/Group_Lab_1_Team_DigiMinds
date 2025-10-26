@@ -33,8 +33,10 @@ public class ManageProfileJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 204));
+
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setText("Manage Profile");
+        jLabel1.setText("Manage Faculty Profile");
 
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -50,9 +52,9 @@ public class ManageProfileJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(btnBack)
-                .addGap(159, 159, 159)
+                .addGap(122, 122, 122)
                 .addComponent(jLabel1)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,11 +69,8 @@ public class ManageProfileJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        if (CardSequencePanel == null) return; // error handling if there's nothing before
-        
-        CardLayout cl = (CardLayout) CardSequencePanel.getLayout();
-        CardSequencePanel.remove(this);  // removes current panel then back to previous panel
-        cl.previous(CardSequencePanel);
+        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.first(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

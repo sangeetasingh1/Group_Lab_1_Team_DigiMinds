@@ -33,6 +33,8 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 204));
+
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Student Grades");
 
@@ -67,11 +69,8 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        if (CardSequencePanel == null) return; // error handling if there's nothing before
-        
-        CardLayout cl = (CardLayout) CardSequencePanel.getLayout();
-        CardSequencePanel.remove(this);  // removes current panel then back to previous panel
-        cl.previous(CardSequencePanel);
+        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.first(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
