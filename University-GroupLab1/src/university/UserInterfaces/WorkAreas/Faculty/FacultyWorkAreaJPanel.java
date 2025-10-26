@@ -4,15 +4,20 @@
  */
 package university.UserInterfaces.WorkAreas.Faculty;
 
-import javax.swing.JPanel;
-import university.Business.Business;
-import university.Business.UserAccounts.UserAccount;
+import java.awt.CardLayout;
+
 
 /**
  *
  * @author jamie
  */
 public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
+    private javax.swing.JPanel CardSequencePanel;
+
+    ManageCoursesJPanel manageCoursesJPanel = new ManageCoursesJPanel(CardSequencePanel);
+    ManageProfileJPanel manageProfileJPanel = new ManageProfileJPanel(CardSequencePanel);
+    StudentGradesJPanel studentGradesJPanel = new StudentGradesJPanel(CardSequencePanel);
+    StudentProfilesJPanel studentProfilesJPanel = new StudentProfilesJPanel(CardSequencePanel);
 
     
     javax.swing.JPanel CardSequencePanel;
@@ -119,22 +124,26 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCoursesActionPerformed
         // TODO add your handling code here:
-        
+        CardSequencePanel.add("manageCoursesJPanel", manageCoursesJPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnManageCoursesActionPerformed
 
     private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
         // TODO add your handling code here:
-        
+        CardSequencePanel.add("manageProfileJPanel", manageProfileJPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnManageProfileActionPerformed
 
     private void btnStudentGradesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentGradesActionPerformed
         // TODO add your handling code here:
-        
+        CardSequencePanel.add("studentGradesJPanel", studentGradesJPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnStudentGradesActionPerformed
 
     private void btnStudentProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentProfileActionPerformed
         // TODO add your handling code here:
-        
+        CardSequencePanel.add("studentProfilesJPanel", studentProfilesJPanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnStudentProfileActionPerformed
 
 
