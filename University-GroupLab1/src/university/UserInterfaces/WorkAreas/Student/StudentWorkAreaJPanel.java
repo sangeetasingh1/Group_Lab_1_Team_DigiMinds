@@ -118,9 +118,10 @@ import java.awt.Component;
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-    RegisterCoursesPanel rp = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
-    CardSequencePanel.add("RegisterPanel", rp);
-    ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "RegisterPanel");
+    RegisterCoursesPanel regPanel = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("RegisterPanel", regPanel);
+     java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
+    layout.next(CardSequencePanel);
 
         
     }//GEN-LAST:event_btnRegisterActionPerformed
