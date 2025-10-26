@@ -21,20 +21,15 @@ import java.awt.CardLayout;
     Business business;
     UserAccount userAccount;
 
-    // Default constructor (used by GUI builder)
     public StudentWorkAreaJPanel() {
         initComponents();
     }
-
-    // Parameterized constructor (called when user logs in)
     public StudentWorkAreaJPanel(Business b, UserAccount ua, JPanel clp) {
         this.business = b;
         this.userAccount = ua;
         this.CardSequencePanel = clp;
-        initComponents(); // builds the UI created in Design view
+        initComponents();
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
