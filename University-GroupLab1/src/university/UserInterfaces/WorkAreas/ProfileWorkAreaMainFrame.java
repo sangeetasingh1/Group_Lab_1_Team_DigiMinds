@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import university.Person.Faculty.FacultyProfile;
 import university.UserInterfaces.WorkAreas.Faculty.FacultyWorkAreaJPanel;
-
+import university.Person.Student.StudentProfile;
+import university.UserInterfaces.WorkAreas.Student.StudentWorkAreaJPanel;
 /**
  *
  * @author sange
@@ -212,7 +213,15 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
-
+        if (profile instanceof StudentProfile || role.equalsIgnoreCase("Student")) {
+            useraccount.setLastActivity("Account Accessed");
+            useraccount.setLastUpdated(LocalDateTime.now());
+            StudentWorkAreaJPanel studentPanel = new StudentWorkAreaJPanel(business, useraccount, CardSequencePanel);
+            CardSequencePanel.removeAll();
+            CardSequencePanel.add("student", studentPanel);
+            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        }
+        
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void hideLoginControls() {
