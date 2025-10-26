@@ -6,6 +6,7 @@ package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import university.Business.Business;
 import university.Business.UserAccounts.UserAccount;
 
@@ -22,9 +23,25 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
      * Creates new form StudentProfilesJPanel
      */
     public StudentProfilesJPanel(javax.swing.JPanel csp) {
-        JPanel CardSequencePanel;
-        initComponents();
         this.CardSequencePanel = csp;
+  
+        initComponents();
+        
+        studentProfiles();
+        loadStudentProfiles();
+    }
+    
+    private void studentProfiles() {
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[][]{},
+            new String[] { "Name", "NUID", "Hobbies/Interests", "Degree"}
+        );
+        tblStudentProfiles.setModel(model);
+        tblStudentProfiles.setRowHeight(22);
+    }
+    private void loadStudentProfiles() {
+        DefaultTableModel model = (DefaultTableModel) tblStudentProfiles.getModel();
+        model.setRowCount(0);
     }
 
     /**
@@ -55,13 +72,13 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
 
         tblStudentProfiles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "NUID", "Hobbies/Interests", "Degree", "Grade", "Credits"
+                "Name", "NUID", "Hobbies/Interests", "Degree"
             }
         ));
         jScrollPane1.setViewportView(tblStudentProfiles);

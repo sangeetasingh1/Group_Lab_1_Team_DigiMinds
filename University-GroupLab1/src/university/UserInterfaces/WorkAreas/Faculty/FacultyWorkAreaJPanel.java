@@ -14,9 +14,9 @@ import university.Business.UserAccounts.UserAccount;
  * @author jamie
  */
 public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
-    private JPanel CardSequencePanel;
-    private Business business;
-    private UserAccount userAccount;
+    JPanel CardSequencePanel;
+    Business business;
+    UserAccount userAccount;
 
     ManageCoursesJPanel manageCoursesJPanel = new ManageCoursesJPanel(CardSequencePanel);
     ManageProfileJPanel manageProfileJPanel = new ManageProfileJPanel(CardSequencePanel);
