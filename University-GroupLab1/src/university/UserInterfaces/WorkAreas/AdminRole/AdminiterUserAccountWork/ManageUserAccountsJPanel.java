@@ -69,11 +69,12 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         if (manageActivityType.equalsIgnoreCase(MANAGE_FACULTY)) {
             for (UserAccount ua : uad.getUserAccountList()) {
                 if (ua.getAssociatedPersonProfile() instanceof FacultyProfile) {
-                    Object[] row = new Object[4];
+                    Object[] row = new Object[5];
                     row[0] = ua;
                     row[1] = ua.getAccountStatus();
                     row[2] = ua.getLastActivity();
                     row[3] = ua.getLastUpdated();
+                    row[4] = "--";
 
                     ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
                 }
@@ -83,11 +84,12 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
         if (manageActivityType.equalsIgnoreCase(MANAGE_STUDENT)) {
             for (UserAccount ua : uad.getUserAccountList()) {
                 if (ua.getAssociatedPersonProfile() instanceof StudentProfile) {
-                    Object[] row = new Object[4];
+                    Object[] row = new Object[5];
                     row[0] = ua;
                     row[1] = ua.getAccountStatus();
                     row[2] = ua.getLastActivity();
                     row[3] = ua.getLastUpdated();
+                    row[4] = ((StudentProfile) ua.getProfile()).getNuId();
 
                     ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
                 }
