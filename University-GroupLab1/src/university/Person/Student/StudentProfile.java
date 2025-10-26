@@ -48,6 +48,10 @@ public class StudentProfile extends Profile{
     public boolean isMatch(String id) {
         return person.getPersonId().equals(id);
     }
+    
+    public boolean isNuIdMatch(String studentNuId) {
+        return getNuId().equalsIgnoreCase(studentNuId);
+    }
 
     public Transcript getTranscript() {
         return transcript;

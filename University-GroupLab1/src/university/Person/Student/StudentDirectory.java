@@ -17,7 +17,7 @@ public class StudentDirectory {
 
     Department department;
     ArrayList<StudentProfile> studentlist;
-    
+
     public StudentDirectory() {
         studentlist = new ArrayList();
     }
@@ -44,7 +44,18 @@ public class StudentDirectory {
                 return sp;
             }
         }
-            return null; //not found after going through the whole list
-         }
+        return null; //not found after going through the whole list
+    }
     
+    public StudentProfile findStudentUsingNuid(String nuId) {
+
+        for (StudentProfile sp : studentlist) {
+
+            if (sp.isNuIdMatch(nuId)) {
+                return sp;
+            }
+        }
+        return null; //not found after going through the whole list
+    }
+
 }
