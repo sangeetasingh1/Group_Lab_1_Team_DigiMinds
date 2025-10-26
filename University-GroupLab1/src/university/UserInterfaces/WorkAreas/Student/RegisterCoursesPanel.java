@@ -21,7 +21,7 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
     private final Business business;
     private final UserAccount userAccount;
     private final JPanel cardContainer;
-
+    private javax.swing.JPanel CardSequencePanel;
 
     public RegisterCoursesPanel() {
         this.business = null;
@@ -163,10 +163,9 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-                if (cardContainer != null) {
-            CardLayout cl = (CardLayout) cardContainer.getLayout();
-            cl.previous(cardContainer);
-                }
+        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.first(CardSequencePanel);
+                
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed

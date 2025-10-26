@@ -8,6 +8,7 @@ import javax.swing.*;
 import university.Business.Business;
 import university.Business.UserAccounts.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 
 /**
  *
@@ -101,31 +102,34 @@ import java.awt.CardLayout;
 
     private void btnCourseworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseworkActionPerformed
         // TODO add your handling code here:
-        CourseworkPanel cwPanel = new CourseworkPanel(business, userAccount, CardSequencePanel);
-    CardSequencePanel.add("CourseworkPanel", cwPanel);
-    CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-    layout.next(CardSequencePanel);
+       CourseworkPanel cp = new CourseworkPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("CourseworkPanel", cp);
+    ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "CourseworkPanel");
+
+
     }//GEN-LAST:event_btnCourseworkActionPerformed
 
     private void btnTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranscriptActionPerformed
         // TODO add your handling code here:
+        TranscriptPanel tp = new TranscriptPanel(business, userAccount, CardSequencePanel);
+         CardSequencePanel.add("TranscriptPanel", tp);
+        ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "TranscriptPanel");
     }//GEN-LAST:event_btnTranscriptActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        RegisterCoursesPanel p = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
-        CardSequencePanel.add("registerCourses", p);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    RegisterCoursesPanel rp = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("RegisterPanel", rp);
+    ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "RegisterPanel");
 
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditActionPerformed
         // TODO add your handling code here:
-       AuditPanel auditPanel = new AuditPanel(business, userAccount, CardSequencePanel);
-    CardSequencePanel.add("auditPanel", auditPanel);
-    ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
+        AuditPanel ap = new AuditPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("AuditPanel", ap);
+    ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "AuditPanel");
     }//GEN-LAST:event_btnAuditActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed

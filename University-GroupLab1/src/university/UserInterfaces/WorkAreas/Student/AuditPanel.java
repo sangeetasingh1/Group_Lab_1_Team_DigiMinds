@@ -113,11 +113,8 @@ public class AuditPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         if (CardSequencePanel == null) return;           // safety
-
-    CardLayout cl = (CardLayout) CardSequencePanel.getLayout();
-    CardSequencePanel.remove(this);                  // remove this AuditPanel
-    cl.previous(CardSequencePanel); 
+      CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+      layout.first(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

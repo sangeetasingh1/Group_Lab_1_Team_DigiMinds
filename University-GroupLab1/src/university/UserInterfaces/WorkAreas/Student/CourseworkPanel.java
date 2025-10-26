@@ -18,18 +18,18 @@ public class CourseworkPanel extends javax.swing.JPanel {
     Business business;
     UserAccount userAccount;
     javax.swing.JPanel CardSequencePanel;
+    private UserAccount ua;
+    private Business b;
+    private JPanel clp;
+    private JPanel cardPanel;
     /**
      * Creates new form CourseworkPanel
      */
-    public CourseworkPanel() {
+    public CourseworkPanel(Business business, UserAccount userAccount, javax.swing.JPanel cardPanel) {
         initComponents();
-        this.business = b;
-        this.userAccount = ua;
-        this.CardSequencePanel = clp;
-    }
-
-    CourseworkPanel(Business business, UserAccount userAccount, JPanel CardSequencePanel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         this.business = business;
+        this.userAccount = userAccount;
+        this.CardSequencePanel = cardPanel;
     }
 
     /**
