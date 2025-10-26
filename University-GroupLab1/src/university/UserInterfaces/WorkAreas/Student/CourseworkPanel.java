@@ -54,8 +54,6 @@ private void seedAssignments() {
     private void initComponents() {
 
         lblcoursework = new javax.swing.JLabel();
-        lblCourseName = new javax.swing.JLabel();
-        lblStatus = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
@@ -69,12 +67,6 @@ private void seedAssignments() {
         lblcoursework.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblcoursework.setText("Manage Coursework");
         add(lblcoursework, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 240, -1));
-
-        lblCourseName.setText("My Coursework");
-        add(lblCourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
-
-        lblStatus.setText("Status:");
-        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         btnBack.setText("<<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -179,8 +171,6 @@ private void seedAssignments() {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblCourseName;
-    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblcoursework;
     // End of variables declaration//GEN-END:variables
 
