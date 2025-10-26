@@ -214,6 +214,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
         }
         if (profile instanceof StudentProfile || role.equalsIgnoreCase("Student")) {
+            hideLoginControls();
             useraccount.setLastActivity("Account Accessed");
             useraccount.setLastUpdated(LocalDateTime.now());
             StudentWorkAreaJPanel studentPanel = new StudentWorkAreaJPanel(business, useraccount, CardSequencePanel);
