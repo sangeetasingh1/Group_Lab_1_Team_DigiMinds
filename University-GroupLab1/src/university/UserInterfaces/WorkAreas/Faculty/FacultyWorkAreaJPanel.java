@@ -5,6 +5,9 @@
 package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
+import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
 
 
 /**
@@ -12,7 +15,9 @@ import java.awt.CardLayout;
  * @author jamie
  */
 public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
-    private javax.swing.JPanel CardSequencePanel;
+    private JPanel CardSequencePanel;
+    private Business business;
+    private UserAccount userAccount;
 
     ManageCoursesJPanel manageCoursesJPanel = new ManageCoursesJPanel(CardSequencePanel);
     ManageProfileJPanel manageProfileJPanel = new ManageProfileJPanel(CardSequencePanel);
@@ -20,9 +25,7 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
     StudentProfilesJPanel studentProfilesJPanel = new StudentProfilesJPanel(CardSequencePanel);
 
     
-    javax.swing.JPanel CardSequencePanel;
-    Business business;
-    UserAccount userAccount;
+    
     /**
      * Creates new form FacultyWorkAreaJPanel
      */
