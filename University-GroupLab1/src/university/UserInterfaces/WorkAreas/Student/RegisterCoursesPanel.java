@@ -82,6 +82,7 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         btnEnroll = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        btnDrop = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
 
@@ -123,6 +124,13 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDrop.setText("Drop Selected");
+        btnDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDropActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,8 +140,10 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                .addGap(92, 92, 92)
-                .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEnroll, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(btnDrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,17 +157,16 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
                 .addGap(11, 11, 11)
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRefresh)
-                        .addGap(39, 39, 39))))
+                    .addComponent(btnBack)
+                    .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRefresh)
+                    .addComponent(btnDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,9 +195,30 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnEnrollActionPerformed
 
+    private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblCourses.getSelectedRow();
+    if (selectedRow < 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Select a course to drop.");
+        return;
+    }
+
+    javax.swing.table.DefaultTableModel dtm =
+        (javax.swing.table.DefaultTableModel) tblCourses.getModel();
+    String status = String.valueOf(dtm.getValueAt(selectedRow, 2));
+
+    if (!"Enrolled".equalsIgnoreCase(status)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "You can only drop enrolled courses.");
+    } else {
+        dtm.setValueAt("Available", selectedRow, 2);
+        javax.swing.JOptionPane.showMessageDialog(this, "Course dropped successfully.");
+    }
+    }//GEN-LAST:event_btnDropActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnEnroll;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JScrollPane jScrollPane1;
