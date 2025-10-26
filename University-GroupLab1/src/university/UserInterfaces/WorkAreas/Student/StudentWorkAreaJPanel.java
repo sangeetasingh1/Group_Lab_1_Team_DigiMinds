@@ -135,6 +135,11 @@ import java.awt.CardLayout;
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        RegisterCoursesPanel p = new RegisterCoursesPanel(business, userAccount, CardSequencePanel);
+        CardSequencePanel.add("registerCourses", p);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditActionPerformed
