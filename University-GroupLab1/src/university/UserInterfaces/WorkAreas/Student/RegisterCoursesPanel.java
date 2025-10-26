@@ -17,18 +17,19 @@ import university.Business.UserAccounts.UserAccount;
 
 public class RegisterCoursesPanel extends javax.swing.JPanel {
 
-    // Context
+
     private final Business business;
     private final UserAccount userAccount;
     private final JPanel cardContainer;
 
-    /** Default constructor used by the GUI builder – OK to keep, but not used at runtime */
+
     public RegisterCoursesPanel() {
         this.business = null;
         this.userAccount = null;
         this.cardContainer = null;
         initComponents();
         configureTable();
+        loadCourses();
     }
 
     /** Preferred constructor called from StudentWorkAreaJPanel */
@@ -38,14 +39,7 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         this.cardContainer = container;
         initComponents();
         configureTable();
-        loadCourses();     // TODO: replace with real catalog
-        wireActions();
-    }
-
-    private void wireActions() {
-        btnRefresh.addActionListener(e -> loadCourses());
-        btnEnroll.addActionListener(e -> enrollSelected());
-        btnBack.addActionListener(e -> goBack());
+        loadCourses();    
     }
 
     private void configureTable() {
@@ -58,8 +52,6 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         tblCourses.setModel(model);
         tblCourses.setRowHeight(22);
     }
-
-    // TEMP data – swap with business.getCourseCatalog() later
     private void loadCourses() {
         DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
         model.setRowCount(0);
@@ -67,23 +59,7 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         model.addRow(new Object[]{"INFO 6150", "Web Design & UX", 4});
         model.addRow(new Object[]{"CSYE 6200", "Object-Oriented Design", 4});
     }
-
-    private void enrollSelected() {
-        int row = tblCourses.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a course to enroll.", "No Selection", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        String id    = tblCourses.getValueAt(row, 0).toString();
-        String title = tblCourses.getValueAt(row, 1).toString();
-
-        // TODO: integrate with real model, e.g.:
-        // var sp = (university.Person.Student.StudentProfile) userAccount.getAssociatedPersonProfile();
-        // sp.registerForCourse(id);
-
-        JOptionPane.showMessageDialog(this, "Enrolled in " + id + " — " + title);
-    }
-
+    
     private void goBack() {
         if (cardContainer != null) {
             cardContainer.remove(this);
@@ -127,6 +103,11 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblCourses);
 
         btnEnroll.setText("Enroll Selected");
+        btnEnroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnrollActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("<<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -182,13 +163,29 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+                if (cardContainer != null) {
+            CardLayout cl = (CardLayout) cardContainer.getLayout();
+            cl.previous(cardContainer);
+                }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
-        
+        loadCourses();
 
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnrollActionPerformed
+        // TODO add your handling code here:
+         int row = tblCourses.getSelectedRow();
+        if (row < 0) {
+        JOptionPane.showMessageDialog(this, "Please select a course to enroll.");
+        return;
+    }
+    String id = tblCourses.getValueAt(row, 0).toString();
+    JOptionPane.showMessageDialog(this, "Enrolled in " + id);
+
+    }//GEN-LAST:event_btnEnrollActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -199,4 +196,8 @@ public class RegisterCoursesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblCourses;
     // End of variables declaration//GEN-END:variables
+
+   
+
+  
 }
