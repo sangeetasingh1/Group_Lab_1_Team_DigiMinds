@@ -101,6 +101,10 @@ import java.awt.CardLayout;
 
     private void btnCourseworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseworkActionPerformed
         // TODO add your handling code here:
+        CourseworkPanel cwPanel = new CourseworkPanel(business, userAccount, CardSequencePanel);
+    CardSequencePanel.add("CourseworkPanel", cwPanel);
+    CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+    layout.next(CardSequencePanel);
     }//GEN-LAST:event_btnCourseworkActionPerformed
 
     private void btnTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranscriptActionPerformed
