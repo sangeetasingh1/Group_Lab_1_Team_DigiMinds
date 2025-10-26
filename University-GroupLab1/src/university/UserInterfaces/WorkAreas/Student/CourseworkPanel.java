@@ -4,17 +4,32 @@
  */
 package university.UserInterfaces.WorkAreas.Student;
 
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
+
 /**
  *
  * @author Jafaeth Gomez
  */
 public class CourseworkPanel extends javax.swing.JPanel {
-
+    Business business;
+    UserAccount userAccount;
+    javax.swing.JPanel CardSequencePanel;
+    private UserAccount ua;
+    private Business b;
+    private JPanel clp;
+    private JPanel cardPanel;
     /**
      * Creates new form CourseworkPanel
      */
-    public CourseworkPanel() {
+    public CourseworkPanel(Business business, UserAccount userAccount, javax.swing.JPanel cardPanel) {
         initComponents();
+         this.business = business;
+        this.userAccount = userAccount;
+        this.CardSequencePanel = cardPanel;
     }
 
     /**
@@ -26,19 +41,84 @@ public class CourseworkPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        lblcoursework = new javax.swing.JLabel();
+        lblCourseName = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        txtCourseName = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblcoursework.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblcoursework.setText("Course Work");
+        add(lblcoursework, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 153, -1));
+
+        lblCourseName.setText("Course Name");
+        add(lblCourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 127, -1, -1));
+
+        lblStatus.setText("Status:");
+        add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 167, -1, -1));
+
+        txtCourseName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCourseNameActionPerformed(evt);
+            }
+        });
+        add(txtCourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 124, 107, -1));
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 164, 107, -1));
+
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 236, 95, -1));
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 236, 95, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCourseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCourseNameActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+         CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
+        layout.previous(CardSequencePanel);
+    
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String courseName = txtCourseName.getText();
+        String status = txtStatus.getText();
+
+        if (courseName.isEmpty() || status.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Coursework saved:\nCourse: " + courseName + "\nStatus: " + status);
+        }
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JLabel lblCourseName;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblcoursework;
+    private javax.swing.JTextField txtCourseName;
+    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }
