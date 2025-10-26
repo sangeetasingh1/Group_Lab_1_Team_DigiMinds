@@ -5,13 +5,18 @@
 package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
+import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
 
 /**
  *
  * @author jamie
  */
 public class StudentProfilesJPanel extends javax.swing.JPanel {
-        private javax.swing.JPanel CardSequencePanel;
+    JPanel CardSequencePanel;
+    Business business;
+    UserAccount selecteduseraccount;
 
     /**
      * Creates new form StudentProfilesJPanel
@@ -33,7 +38,7 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblStudentProfiles = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 255, 204));
 
@@ -47,18 +52,18 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudentProfiles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "NUID", "Hobbies/Interests", "Degree", "Grade"
+                "Name", "NUID", "Hobbies/Interests", "Degree", "Grade", "Credits"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblStudentProfiles);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,8 +95,8 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-        layout.first(CardSequencePanel);
+        CardSequencePanel.remove(this);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
@@ -99,6 +104,6 @@ public class StudentProfilesJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblStudentProfiles;
     // End of variables declaration//GEN-END:variables
 }

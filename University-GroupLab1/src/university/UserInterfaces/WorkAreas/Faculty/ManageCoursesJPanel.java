@@ -6,6 +6,8 @@ package university.UserInterfaces.WorkAreas.Faculty;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import university.Business.Business;
+import university.Business.UserAccounts.UserAccount;
 
 /**
  *
@@ -13,12 +15,15 @@ import javax.swing.JPanel;
  */
 public class ManageCoursesJPanel extends javax.swing.JPanel {
     JPanel CardSequencePanel;
+    Business business;
+    UserAccount selecteduseraccount;
+
     
 
     /**
      * Creates new form ManageCoursesJPanel
      */
-    public ManageCoursesJPanel(JPanel csp) {
+    public ManageCoursesJPanel(javax.swing.JPanel csp) {
         this.CardSequencePanel = csp;
         
         initComponents();
@@ -95,8 +100,8 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) CardSequencePanel.getLayout();
-        layout.first(CardSequencePanel);
+        CardSequencePanel.remove(this);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
