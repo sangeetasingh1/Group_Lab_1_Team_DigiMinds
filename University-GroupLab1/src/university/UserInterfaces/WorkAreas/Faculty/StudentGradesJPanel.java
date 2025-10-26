@@ -4,17 +4,21 @@
  */
 package university.UserInterfaces.WorkAreas.Faculty;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author jamie
  */
 public class StudentGradesJPanel extends javax.swing.JPanel {
+    private javax.swing.JPanel CardSequencePanel;
 
     /**
      * Creates new form StudentGradesJPanel
      */
-    public StudentGradesJPanel() {
+    public StudentGradesJPanel(javax.swing.JPanel csp) {
         initComponents();
+        this.CardSequencePanel = csp;
     }
 
     /**
@@ -27,30 +31,52 @@ public class StudentGradesJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Student Grades");
+
+        btnBack.setText("< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(250, 250, 250)
+                .addGap(27, 27, 27)
+                .addComponent(btnBack)
+                .addGap(145, 145, 145)
                 .addComponent(jLabel1)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack)
+                    .addComponent(jLabel1))
                 .addContainerGap(404, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        if (CardSequencePanel == null) return; // error handling if there's nothing before
+        
+        CardLayout cl = (CardLayout) CardSequencePanel.getLayout();
+        CardSequencePanel.remove(this);  // removes current panel then back to previous panel
+        cl.previous(CardSequencePanel);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
